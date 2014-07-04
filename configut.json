@@ -1,0 +1,15 @@
+{
+  "db": {
+    "host": "localhost",
+    "user": "sampleapp",
+    "password": "secret",
+    "port": "3306",
+    "database": "sampleapput"
+  },
+  "files": {
+    "top_dir": "./unittest"
+  },
+  "debug": {
+    "level": "log"
+  }
+}
