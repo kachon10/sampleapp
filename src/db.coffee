@@ -27,10 +27,4 @@ class Db
   end: () ->
     @conn.end()
 
-  test: () ->
-    @conn.query("SELECT COUNT(*) from user", (err, rows, fields) ->
-        console.log "#{err}"
-        console.log "#{JSON.stringify rows, null, 2}"
-      )
-
 module.exports = Db

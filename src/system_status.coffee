@@ -3,6 +3,7 @@ winston = require('winston')
 config = require('../config.json')
 Db = require('../src/db')
 
+#class to get system status
 class SystemStatus
   constructor: ->
     @status = {}

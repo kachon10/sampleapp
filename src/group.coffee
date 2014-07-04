@@ -1,7 +1,7 @@
 mysql = require('mysql')
 winston = require('winston')
 
-# class to provide authenication
+# class to group user
 class Group 
   constructor: (@db) ->
 

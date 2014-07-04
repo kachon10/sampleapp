@@ -2,6 +2,7 @@ glob = require('glob')
 winston = require('winston')
 path = require('path')
 
+#class to gather files based on directory info
 class Files
   constructor: (@config) ->
 
