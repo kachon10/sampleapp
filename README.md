@@ -5,13 +5,13 @@ This application is written in nodejs with coffeescript.
 It provides the following api with https:
 
 * POST /v1/sign_in
-    Example: https://localhost:3000/v1/sign_in
-    Input: 
+  Example: https://localhost:3000/v1/sign_in
+  Input: 
            {
             user: "",
             pwd: ""
            }
-    Output:
+  Output:
            {
             token: "auth-token" 
            }
