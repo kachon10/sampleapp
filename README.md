@@ -5,43 +5,29 @@ This application is written in nodejs with coffeescript.
 It provides the following api with https:
 
 * POST /v1/sign_in
-  Example: https://localhost:3000/v1/sign_in
-  Input: 
-           {
-            user: "",
-            pwd: ""
-           }
-  Output:
-           {
-            token: "auth-token" 
-           }
+  * Example: https://localhost:3000/v1/sign_in
+  * Input: { user: "", pwd: "" }
+  * Output: { token: "auth-token" }
 
 * POST /vi/sign_out
-    Example: https://localhost:3000/v1/sign_in
-    Input: 
-        with header: "x-token: auth-token"
+  * Example: https://localhost:3000/v1/sign_in
+  * Header: "x-token: auth-token"
 
 * GET /v1/grades
-    Example: https://localhost:3000/v1/grades
-    Input: 
-        with header: "x-token: auth-token"
-    Output:
-        return user list group by grades in JSON
+  * Example: https://localhost:3000/v1/grades
+  * Header: "x-token: auth-token"
+  * Output: return user list group by grades in JSON
 
 * GET /v1/files
-    Example: https://localhost:3000/v1/files
-    Input:
-        with header: "x-token: auth-token"
-        querystring: "folder=subdir1"
-    Output:
-        return files under a directory in JSON
+  * Example: https://localhost:3000/v1/files
+  * Header: "x-token: auth-token"
+  * Input: "folder=subdir1"
+  * Output: return files under a directory in JSON
 
 * GET /v1/system_status
-    Example: https://localhost:3000/v1/system_status
-    Input:
-        with header: "x-token: auth-token"
-    Output:
-        return system status in JSON
+  * Example: https://localhost:3000/v1/system_status
+  * Header: "x-token: auth-token"
+  * Output: return system status in JSON
 
 # Installation
 
@@ -88,4 +74,7 @@ It provides the following api with https:
 
 # Run unittest
 * jasmine-node --coffee spec
+
+# Examples
+  Examples are provided under the example folder
 
