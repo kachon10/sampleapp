@@ -16,6 +16,7 @@ It provides the following api with https:
 * GET /v1/grades
   * Example: https://localhost:3000/v1/grades
   * Header: "x-token: auth-token"
+  * Input: "country=country_a"
   * Output: return user list group by grades in JSON
 
 * GET /v1/files
