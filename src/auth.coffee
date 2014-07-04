@@ -60,11 +60,11 @@ class Auth
       winston.debug "_update_user_token exception #{error}"
       cb(null)
 
-  add_user: (user, pwd, grade, cb) ->
+  add_user: (user, pwd, country, grade, cb) ->
     hash = @_convert_pwd_to_hash(pwd)
     token = @_get_new_token()
-    query = "INSERT INTO `user` (`id`,`user`,`pwd_hash`, `token`, `grade`) \
-              VALUES (NULL, \"#{user}\", \"#{hash}\", \"#{token}\", \"#{grade}\")"
+    query = "INSERT INTO `user` (`id`,`user`,`pwd_hash`, `token`, `country`, `grade`) \
+              VALUES (NULL, \"#{user}\", \"#{hash}\", \"#{token}\", \"#{country}\", \"#{grade}\")"
     @db.conn.query(query, (err, rows, fields) ->
       if err
         winston.debug "_add_user callback #{err}"

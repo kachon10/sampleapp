@@ -5,18 +5,21 @@ winston = require('winston')
 class Group 
   constructor: (@db) ->
 
-  group_by_grade: (cb) ->
-    query = "select * from user"
+  validate_req: (data) ->
+    if data.country?
+      return 
+    else 
+      throw "Missing parameters"
+
+  group_by_grade: (country_filter, cb) ->
+    query = "select group_concat(user) as user, grade from user where country = '#{country_filter}' group by grade"
     @db.conn.query(query, (err, rows, fields) ->
       if err
-        winston.debug "group_by_grade callback #{err}"
         cb(null)
       else
         ret = {}
         for r in rows
-          if r.grade not of ret
-            ret[r.grade] = []
-          ret[r.grade].push(r.user)
+          ret[r.grade] = r.user.split(",")
         cb(ret)
     )
 

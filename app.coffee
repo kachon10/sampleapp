@@ -8,7 +8,6 @@ config = require("./config.json")
 
 require('./src/initlog')(config.debug.level)
 routes = require("./routes/index")
-users = require("./routes/users")
 v1 = require("./routes/v1")
 winston = require('winston')
 
@@ -25,7 +24,6 @@ app.use bodyParser.urlencoded()
 app.use cookieParser()
 app.use express.static(path.join(__dirname, "public"))
 app.use "/", routes
-app.use "/users", users
 app.use "/v1", v1()
 
 #/ catch 404 and forwarding to error handler

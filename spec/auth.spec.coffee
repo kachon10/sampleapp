@@ -42,18 +42,20 @@ describe "Auth Test", ->
       winston.debug "DROP table callback #{err}"
       )
     db.conn.query("CREATE table user (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
-                                      user VARCHAR(20), 
-                                      pwd_hash VARCHAR(128),
-                                      token VARCHAR(128),
-                                      grade VARCHAR(1));", (err, rows, fields) ->
+                                    user VARCHAR(20), 
+                                    pwd_hash VARCHAR(128),
+                                    token VARCHAR(128),
+                                    country VARCHAR(64),
+                                    grade VARCHAR(1));", (err, rows, fields) ->
       winston.debug "CREATE table callback #{err}"
       )
 
   it "should be able to add user", ->
     user = "user1"
     pwd = "hash1"
+    country = "country_a"
     grade = "A"
-    auth.add_user(user, pwd, grade, (token) ->
+    auth.add_user(user, pwd, country, grade, (token) ->
       winston.debug ("got token #{token}")
       )
 
@@ -84,8 +86,9 @@ describe "Auth Test", ->
 
     user = "user2"
     pwd = "hash2"
+    country = "country_a"
     grade = "A"
-    auth.add_user(user, pwd, grade, (token) ->
+    auth.add_user(user, pwd, country, grade, (token) ->
       auth.find_user_with_token(token, (user) =>
           if user
             got_user = true
@@ -114,8 +117,9 @@ describe "Auth Test", ->
 
     user = "user3"
     pwd = "hash3"
+    country = "country_a"
     grade = "A"
-    auth.add_user(user, pwd, grade, (token) =>
+    auth.add_user(user, pwd, country, grade, (token) =>
       winston.debug "1 user: #{user}"
       auth._update_user_token(user, (user) =>
         winston.debug "2 user: #{user}"

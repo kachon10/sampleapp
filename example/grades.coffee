@@ -23,6 +23,9 @@ request.post('https://localhost:3000/v1/sign_in',
         request.get('https://localhost:3000/v1/grades',
             headers:
               "x-token": token
+            ,
+            qs:
+              country: "country_a"
           ,
             (error, response, body) ->
               if error 
@@ -30,7 +33,7 @@ request.post('https://localhost:3000/v1/sign_in',
               else if response.statusCode != 200
                 console.log("ErrorCode: #{response.statusCode} #{body}")
               else
-                console.log("Get system status success")
+                console.log("Get grades success")
                 console.log("#{JSON.stringify JSON.parse(body), null, 2}")
           )
   )

@@ -99,7 +99,13 @@ module.exports = (options) ->
 
   router.get "/grades", (req, res) ->
     handle_token(req, res, (user) ->
-      group.group_by_grade( (ret) ->
+      try
+        group.validate_req(req.query)
+      catch e
+        send_badreq(res, e)
+        return
+      
+      group.group_by_grade( req.query.country, (ret) ->
         res.send ret
         )
     )

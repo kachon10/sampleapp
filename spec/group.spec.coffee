@@ -17,10 +17,11 @@ describe "Group Test", ->
       winston.debug "DROP table callback #{err}"
       )
     db.conn.query("CREATE table user (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
-                                      user VARCHAR(20), 
-                                      pwd_hash VARCHAR(128),
-                                      token VARCHAR(128),
-                                      grade VARCHAR(1));", (err, rows, fields) ->
+                                    user VARCHAR(20), 
+                                    pwd_hash VARCHAR(128),
+                                    token VARCHAR(128),
+                                    country VARCHAR(64),
+                                    grade VARCHAR(1));", (err, rows, fields) ->
       winston.debug "CREATE table callback #{err}"
       )
 
@@ -29,36 +30,55 @@ describe "Group Test", ->
     got_user = false
     user = "user1"
     pwd = "hash1"
+    country = "country_a"
     grade = "A"
-    auth.add_user(user, pwd, grade, (token) ->
+    auth.add_user(user, pwd, country, grade, (token) ->
       winston.debug ("got token #{token}")
       )
 
     user = "user2"
     pwd = "hash1"
+    country = "country_b"
     grade = "A"
-    auth.add_user(user, pwd, grade, (token) ->
+    auth.add_user(user, pwd, country, grade, (token) ->
       winston.debug ("got token #{token}")
       )
 
     user = "user3"
     pwd = "hash1"
-    grade = "B"
-    auth.add_user(user, pwd, grade, (token) ->
+    country = "country_a"
+    grade = "A"
+    auth.add_user(user, pwd, country, grade, (token) ->
       winston.debug ("got token #{token}")
       )
 
     user = "user4"
     pwd = "hash1"
+    country = "country_b"
     grade = "B"
-    auth.add_user(user, pwd, grade, (token) ->
+    auth.add_user(user, pwd, country, grade, (token) ->
       winston.debug ("got token #{token}")
       )
 
-    group.group_by_grade( (ret) ->
-      winston.debug ("got ret #{JSON.stringify ret, null, 2}")
+    user = "user5"
+    pwd = "hash1"
+    country = "country_a"
+    grade = "B"
+    auth.add_user(user, pwd, country, grade, (token) ->
+      winston.debug ("got token #{token}")
+      )
+
+    user = "user6"
+    pwd = "hash1"
+    country = "country_b"
+    grade = "B"
+    auth.add_user(user, pwd, country, grade, (token) ->
+      winston.debug ("got token #{token}")
+      )
+
+    group.group_by_grade( "country_a", (ret) ->
       if 'A' of ret and 'B' of ret
-        if ret.A.length == 2 and ret.B.length
+        if ret.A.length == 2 and ret.B.length == 1
           got_user = true
 
       got_resp = true   
